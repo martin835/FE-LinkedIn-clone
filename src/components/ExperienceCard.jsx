@@ -25,7 +25,7 @@ export default function ExperienceCard(props) {
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [ ])
 
   let params = useParams()
 
