@@ -1,4 +1,3 @@
-import { Row, Col } from "react-bootstrap"
 import ResourcesCardSec from "./ResourcesCardSec"
 
 export default function ResourcesCard(props) {

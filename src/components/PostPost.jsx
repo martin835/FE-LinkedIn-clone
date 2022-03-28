@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, NavDropdown, Modal } from "react-bootstrap"
+import { Button, Modal } from "react-bootstrap"
 
 export default function PostPost({ image, name, surname }) {
   const [post, setPost] = useState({ text: undefined })

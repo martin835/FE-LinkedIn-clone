@@ -25,6 +25,7 @@ export default function ExperienceCard(props) {
 
   useEffect(() => {
     fetchData()
+     // eslint-disable-next-line
   }, [ ])
 
   let params = useParams()

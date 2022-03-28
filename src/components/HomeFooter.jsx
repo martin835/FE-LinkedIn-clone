@@ -1,5 +1,5 @@
 /* change font size */
-import { Container, Row, Col, Dropdown } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 const HomeFooter = function () {
   return (
     <footer>
