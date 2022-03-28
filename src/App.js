@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     imageRendered = !imageRendered
-   
+
   })
 
   let imageRendered = true
@@ -27,14 +27,14 @@ function App() {
     setFet(value)
   }
 
-  
+
 
   return (
     <HashRouter basename="/">
-      {imageRendered ? <MyNavbar image={img} funcD={fet}/> : <MyNavbar funcD={fet} />}
+      {imageRendered ? <MyNavbar image={img} funcD={fet} /> : <MyNavbar funcD={fet} />}
       <Routes>
         <Route path="/" element={<NewsMain changeImg={changeImg} />} />
-        <Route path="/profile/:profileId" element={<MainSection fetchD={changeFet}/>} />
+        <Route path="/profile/:profileId" element={<MainSection D={changeFet} />} />
       </Routes>
     </HashRouter>
   )
