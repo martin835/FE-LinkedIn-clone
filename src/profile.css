@@ -1,0 +1,104 @@
+.profile-main {
+  overflow: hidden;
+  position: relative;
+}
+.profile-cover {
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.profile-img-ed {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+}
+.profile-img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  border: 3px solid white;
+  top: 105px;
+  left: 25px;
+}
+
+.work-card {
+  background-color: hsla(33, 31%, 87%, 0.5) !important;
+}
+.pen-lg {
+  position: absolute;
+  font-size: 16px;
+  top: 210px;
+  right: 20px;
+}
+.icon-tr {
+  position: absolute;
+  right: 10px;
+  font-size: 14px;
+}
+.font-8 {
+  font-size: 8px !important;
+}
+.font-10 {
+  font-size: 10px !important;
+}
+.font-12 {
+  font-size: 12px !important;
+}
+.font-13 {
+  font-size: 13px !important;
+}
+.font-14 {
+  font-size: 14px !important;
+}
+.font-16 {
+  font-size: 16px !important;
+}
+.font-18 {
+  font-size: 18px !important;
+}
+.side-profile-img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  margin-top: 6px;
+  margin-right: 1rem;
+  object-fit: cover;
+}
+.description-text {
+  color: rgb(99, 99, 99);
+}
+.hr-line {
+  height: 1px;
+  width: 100%;
+  background-color: hsla(0, 0%, 79%, 0.46);
+}
+.side-btn {
+  border: 2px solid gray;
+  width: fit-content;
+  padding: 0.125rem 0.75rem !important;
+}
+
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.text-one {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: bold;
+}
+
+i {
+  cursor: pointer;
+}
