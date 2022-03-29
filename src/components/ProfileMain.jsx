@@ -53,7 +53,7 @@ export default function ProfileMain(props) {
       url:
       `${process.env.REACT_APP_LOCAL}/profile/` +
         props.parameters +
-        "/picture/",
+        "/upload/",
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -77,7 +77,7 @@ export default function ProfileMain(props) {
         alt="cover"
       />
       <img className="profile-img object-top" src={user.image} alt="profile" />
-      {params.profileId === "62141c010448b4001511688d" && (
+      {params.profileId === "6241b5a05f0f9cae1d24811c" && (
         <i className="bi bi-pencil pen-lg" onClick={() => handleShow()}></i>
       )}
       <div className="profile-card m-4">
