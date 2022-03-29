@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react"
 import SinglePost from "./SinglePost"
 
-const GetAPost = () => {
+const GetAPost = (props) => {
   const [posts, setPosts] = useState(undefined)
+
 
   useEffect(() => {
     getFetch()
    
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ ])
+  }, [!props.refe])
 
   const change = (value) => {
     setPosts(value)
   }
+
 
 const apiL =  `${process.env.REACT_APP_LOCAL}/posts`
 

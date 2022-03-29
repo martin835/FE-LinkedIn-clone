@@ -27,16 +27,12 @@ const SinglePost = (props) => {
   const formData = new FormData()
 
   const poId =
-    "https://striveschool-api.herokuapp.com/api/posts/" + props.unique
+ `${process.env.REACT_APP_LOCAL}/posts/` + props.unique
 
   const deleteData = async () => {
     try {
       const response = await fetch(poId, {
         method: "DELETE",
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
-        },
       })
       if (response.ok) {
         console.log("Ok")
@@ -49,14 +45,12 @@ const SinglePost = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const posId =
-      "https://striveschool-api.herokuapp.com/api/posts/" + props.unique
+    `${process.env.REACT_APP_LOCAL}/posts/` + props.unique
       axios({
         method: "post",
-        url: "https://striveschool-api.herokuapp.com/api/posts/" + postId,
+        url: `${process.env.REACT_APP_LOCAL}/posts/` + postId,
         data: formData,
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
           "Content-Type": "multipart/form-data",
         },
       })
@@ -73,8 +67,6 @@ const SinglePost = (props) => {
         method: "PUT",
         body: JSON.stringify(post),
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
           "Content-type": "application/json",
         },
       })
@@ -135,7 +127,7 @@ const SinglePost = (props) => {
           <span className="text-muted font-11 text-one">{date.slice(0,10) + " • " + date.slice(11,19)}</span>
           </div>
         </div>
-       { props.params=== '62141c010448b4001511688d'&& 
+       { props.params=== '6241b5a05f0f9cae1d24811c'&& 
         <i
           className="bi bi-three-dots d-block"
           style={{ cursor: "pointer" }}

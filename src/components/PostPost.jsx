@@ -1,10 +1,11 @@
 import { useState } from "react"
 import { Button, Modal } from "react-bootstrap"
 
-export default function PostPost({ image, name, surname }) {
+export default function PostPost({ image, name, surname, refe }) {
   const [post, setPost] = useState({ text: undefined, image: "", profile: "6241b5a05f0f9cae1d24811c" })
 
   const [show, setShow] = useState(false)
+  
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -112,6 +113,7 @@ export default function PostPost({ image, name, surname }) {
               onClick={(e) => {
                 handleSubmit(e)
                 handleClose()
+                refe(true)
               }}>
               Post
             </Button>

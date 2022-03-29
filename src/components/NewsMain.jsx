@@ -9,6 +9,13 @@ import { useState, useEffect } from "react"
 const NewsMain = ({ changeImg }) => {
   const [user, setUser] = useState({})
 
+  const [fe, setFe] = useState(false)
+
+
+  const changeFe = (value) => {
+    setFe(value)
+  }
+
   const apiL= `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c`
 
   const fetchData = async () => {
@@ -23,7 +30,7 @@ const NewsMain = ({ changeImg }) => {
       console.log(error)
     }
   }
-  
+
 
   useEffect(() => {
     fetchData()
@@ -41,8 +48,9 @@ const NewsMain = ({ changeImg }) => {
             image={user.image}
             name={user.name}
             surname={user.surname}
+            refe={changeFe}
           />
-          <GetAPost />
+          <GetAPost refe={fe} />
         </Col>
         <Col md={4}>
           <LinkedNews title={"LinkedIn News"} />
