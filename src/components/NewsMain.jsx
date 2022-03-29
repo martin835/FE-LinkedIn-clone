@@ -23,6 +23,7 @@ const NewsMain = ({ changeImg }) => {
       console.log(error)
     }
   }
+  
 
   useEffect(() => {
     fetchData()
