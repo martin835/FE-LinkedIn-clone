@@ -159,8 +159,8 @@ const SinglePost = (props) => {
       </div>
       <span className="font-12 text-muted ml-3">{counter}</span>
       <div className="d-flex justify-content-between font-14 ml-2 mr-2 mt-3" style={{ borderTop: "1px solid gray", paddingTop: "20px" }} >
-          <div className="pointer" onClick={() => {like ? setCounter(counter-1): setCounter(counter+1) ; setLike(!like)}}>
-         {like ?<> <i className="bi bi-hand-thumbs-up text-primary mr-2"></i> <span className="text-primary">Like</span></>:<><i className="bi bi-hand-thumbs-up mr-2"></i>  <span >Like</span></>}
+          <div className="pointer d-block" onClick={() => {like ? setCounter(counter-1): setCounter(counter+1) ; setLike(!like)}}>
+         {like ?<> <i className="bi bi-hand-thumbs-up text-primary mr-2"></i> <span className="text-primary">Like</span></>:<><i className="bi bi-hand-thumbs-up mr-2"></i>  <span className="">Like</span></>}
           
           </div>
           <div className="pointer">
