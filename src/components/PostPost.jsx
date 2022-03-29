@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Button, Modal } from "react-bootstrap"
 
 export default function PostPost({ image, name, surname }) {
-  const [post, setPost] = useState({ text: undefined })
+  const [post, setPost] = useState({ text: undefined, image: "", profile: "6241b5a05f0f9cae1d24811c" })
 
   const [show, setShow] = useState(false)
 
@@ -10,7 +10,7 @@ export default function PostPost({ image, name, surname }) {
   const handleShow = () => setShow(true)
 
   const updatePost = (value) => {
-    setPost({ text: value })
+    setPost({...post.profile, ...post.image, text: value })
     console.log(post.text)
   }
 
@@ -18,13 +18,13 @@ export default function PostPost({ image, name, surname }) {
     event.preventDefault()
     console.log("working")
 
+    const apiL =  `${process.env.REACT_APP_LOCAL}/posts`
+
     try {
-      await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+      await fetch(apiL, {
         method: "POST",
         body: JSON.stringify(post),
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
           "Content-type": "application/json",
         },
       })

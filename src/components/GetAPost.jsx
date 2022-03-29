@@ -40,7 +40,7 @@ const apiL =  `${process.env.REACT_APP_LOCAL}/posts`
         </div>
       )}
       {posts &&
-        posts.reverse().map((post) => (
+        posts.map((post) => (
             <SinglePost
             fetch={getFetch}
               username={post.profile.name + " " + post.profile.surname}
@@ -53,7 +53,7 @@ const apiL =  `${process.env.REACT_APP_LOCAL}/posts`
               job={post.profile.title}
               date={post.createdAt}
             />
-          ))}
+          )).reverse()}
     </>
   )
 }
