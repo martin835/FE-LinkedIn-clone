@@ -27,19 +27,16 @@ export default function ProfileMain(props) {
     formData.append("profile", e.target.files[0])
   }
 
+  const apiL= `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c`
+
   const httpFetch =
-    props.parameters === "62141c010448b4001511688d"
-      ? "https://striveschool-api.herokuapp.com/api/profile/me"
-      : "https://striveschool-api.herokuapp.com/api/profile/" + props.parameters
+    props.parameters === "6241b5a05f0f9cae1d24811c"
+      ? apiL
+      : `${process.env.REACT_APP_LOCAL}/profile/` + props.parameters
 
   const fetchData = async () => {
     try {
-      const response = await fetch(httpFetch, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
-        },
-      })
+      const response = await fetch(httpFetch)
       const data = await response.json()
       console.log(data)
       setUser(data)
@@ -54,13 +51,11 @@ export default function ProfileMain(props) {
     axios({
       method: "post",
       url:
-        "https://striveschool-api.herokuapp.com/api/profile/" +
+      `${process.env.REACT_APP_LOCAL}/profile/` +
         props.parameters +
         "/picture/",
       data: formData,
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
         "Content-Type": "multipart/form-data",
       },
     })
@@ -109,7 +104,7 @@ export default function ProfileMain(props) {
           </Col>
         </Row>
         <Row>
-          {params.profileId === "62141c010448b4001511688d" && (
+          {params.profileId === "6241b5a05f0f9cae1d24811c" && (
             <>
               <div className="pl-3 mt-4 d-flex align-items-center">
                 <Button className="generic-btn">Open to</Button>

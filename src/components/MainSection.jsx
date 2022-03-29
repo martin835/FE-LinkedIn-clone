@@ -25,7 +25,7 @@ const MainSection = (props) => {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     infosRendered = !infosRendered
-    props.fetchD(func)
+    props.D(func)
   })
 
   let infosRendered = true
@@ -48,7 +48,7 @@ const MainSection = (props) => {
             bio={change}
             fetchD={changes}
           />
-          {params.profileId === "62141c010448b4001511688d" && (
+          {params.profileId === "6241b5a05f0f9cae1d24811c" && (
             <>
               <AnalysisCard parameters={params.profileId} />
               <ResourcesCard parameters={params.profileId} />
@@ -57,7 +57,7 @@ const MainSection = (props) => {
           {infosRendered && (
             <InfosCard parameters={params.profileId} bio={infos} />
           )}
-          {params.profileId === "62141c010448b4001511688d" && (
+          {params.profileId === "6241b5a05f0f9cae1d24811c" && (
             <ActivitiesCard parameters={params.profileId} />
           )}
           <ExperienceCard parameters={params.profileId} />

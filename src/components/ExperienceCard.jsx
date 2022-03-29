@@ -30,19 +30,13 @@ export default function ExperienceCard(props) {
 
   let params = useParams()
 
-  const httpFetch = props.parameters === "62141c010448b4001511688d" ? "https://striveschool-api.herokuapp.com/api/profile/62141c010448b4001511688d/experiences" : "https://striveschool-api.herokuapp.com/api/profile/" + props.parameters + "/experiences/" 
+  const httpFetch = props.parameters === "6241b5a05f0f9cae1d24811c" ?   `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c/experiences` : `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c/experiences` + props.parameters + "/experiences/" 
 
 
   const fetchData = async () => {
     try {
       const response = await fetch(
-       httpFetch,
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
-          },
-        }
+       httpFetch
       )
       const data = await response.json()
       setUser(data)
@@ -83,7 +77,7 @@ export default function ExperienceCard(props) {
         <div className="d-flex justify-content-between">
           <h4 className="mb-3"> Experiences</h4>
           <div>
-           {params.profileId === '62141c010448b4001511688d' && <> <i
+           {params.profileId === '6241b5a05f0f9cae1d24811c' && <> <i
               className="bi bi-plus-lg mr-2"
               style={{ cursor: "pointer" }}
               onClick={() => {

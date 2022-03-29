@@ -78,21 +78,21 @@ const MyNavbar = function ({ image, funcD }) {
               </div>
               <div className="mr-4 mt-1">
                 <Link
-                  to="/profile/62141c010448b4001511688d"
+                  to= "/profile/6241b5a05f0f9cae1d24811c"
                   element={<MainSection />}
                   className={
-                    location.pathname === "/profile/62141c010448b4001511688d"
+                    location.pathname === `/profile/6241b5a05f0f9cae1d24811c`
                       ? "text-black"
                       : "text-muted"
                   }
-                  onClick={()=> funcD()}>
+                >
                   <img className="nav-img object-top" src={user.image} alt="" />
                 </Link>
                 <NavDropdown
                   title="Me"
                   id="profile-nav-dropdown"
                   className={
-                    location.pathname === "/profile/62141c010448b4001511688d"
+                    location.pathname === `/profile/6241b5a05f0f9cae1d24811c`
                       ? "text-black"
                       : "text-muted"
                   }>
