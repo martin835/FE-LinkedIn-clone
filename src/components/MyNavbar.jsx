@@ -47,9 +47,9 @@ const MyNavbar = function ({ image, funcD }) {
     <div className="navbar-full container-nav">
       <Container>
         <Navbar expand="lg" className="mb-4">
-          <i className="bi bi-linkedin mr-2"></i>
+          <i className="bi bi-linkedin small-bi-li mr-2"></i>
           <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <FormControl type="text" placeholder="Search" className="mr-sm-2 search-small" />
           </Form>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

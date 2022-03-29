@@ -339,3 +339,12 @@ footer .bi-linkedin {
   top:0;
   z-index: 1000;
 }
+
+@media (max-width:370px){
+  .search-small {
+    max-width:150px;
+  };
+  .small-bi-li{
+
+  }
+}
