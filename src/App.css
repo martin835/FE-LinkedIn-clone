@@ -340,11 +340,11 @@ footer .bi-linkedin {
   z-index: 1000;
 }
 
-@media (max-width:370px){
+@media (max-width:400px){
   .search-small {
-    max-width:150px;
+    max-width:120px;
   };
-  .small-bi-li{
-
-  }
+  .card-section {
+    width: 120%;
+    }
 }
