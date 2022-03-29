@@ -43,14 +43,14 @@ const apiL =  `${process.env.REACT_APP_LOCAL}/posts`
         posts.reverse().map((post) => (
             <SinglePost
             fetch={getFetch}
-              username={post.user.name + " " + post.user.surname}
+              username={post.profile.name + " " + post.profile.surname}
               image={post.image}
               text={post.text}
               key={post._id}
               unique={post._id}
-              params={post.user._id}
-              userimg={post.user.image}
-              job={post.user.title}
+              params={post.profile._id}
+              userimg={post.profile.image}
+              job={post.profile.title}
               date={post.createdAt}
             />
           ))}
