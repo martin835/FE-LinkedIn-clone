@@ -14,10 +14,12 @@ const GetAPost = () => {
     setPosts(value)
   }
 
+const apiL =  `${process.env.REACT_APP_LOCAL}/posts`
+
   const getFetch = async () => {
     try {
       let response = await fetch(
-       process.env.local + "posts"
+      apiL
       )
       let data = await response.json()
       change(data)

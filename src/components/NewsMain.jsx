@@ -9,16 +9,12 @@ import { useState, useEffect } from "react"
 const NewsMain = ({ changeImg }) => {
   const [user, setUser] = useState({})
 
+  const apiL= `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c`
+
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/me",
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
-          },
-        }
+        apiL
       )
       const data = await response.json()
       changeImg(data.image)
