@@ -44,7 +44,7 @@ const MyNavbar = function ({ image, funcD }) {
   // useEffect(image)
 
   return (
-    <div className="navbar-full">
+    <div className="navbar-full container-nav">
       <Container>
         <Navbar expand="lg" className="mb-4">
           <i className="bi bi-linkedin mr-2"></i>

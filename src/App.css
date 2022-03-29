@@ -53,11 +53,17 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+.container-nav{
+  z-index: 1500;
+}
 
+.navbar{
+  z-index: 1500;
+}
 /* ---navbar Start */
 .navbar-full {
   position: fixed;
-  z-index: 100;
+  z-index: 1000;
   width: 100%;
   max-height: 50px;
   background-color: var(--white-bg);
@@ -93,6 +99,10 @@ h6 {
 
 .nav-link {
   padding: 0 !important;
+}
+
+.navbar-toggler{
+  z-index: 2000;
 }
 
 .navbar-nav {
@@ -141,6 +151,7 @@ footer .bi-linkedin {
 
 .card-section {
   display: flex;
+  z-index: 2;
   flex-direction: column;
   width: 100%;
   overflow: hidden;
@@ -313,9 +324,18 @@ footer .bi-linkedin {
 
 .sticky-top {
   top: 64px !important;
+  z-index: 1 !important;
 }
 
 
 .prime:hover{
   color: var(--link-blue)!important;
+}
+
+#basic-navbar-nav{
+  background-color: var(--white-bg);
+  position:absolute;
+  right: 20px;
+  top:0;
+  z-index: 1000;
 }
