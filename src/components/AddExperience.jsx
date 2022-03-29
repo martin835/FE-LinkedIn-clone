@@ -20,7 +20,7 @@ const AddExperience = (props) => {
 
     try {
       await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/62141c010448b4001511688d/experiences/",
+        process.env.local + "/62141c010448b4001511688d/experiences/",
         {
           method: "POST",
           body: JSON.stringify(experience),
