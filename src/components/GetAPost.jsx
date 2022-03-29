@@ -40,7 +40,7 @@ const apiL =  `${process.env.REACT_APP_LOCAL}/posts`
         </div>
       )}
       {posts &&
-        posts.map((post) => (
+        posts.reverse().map((post) => (
             <SinglePost
             fetch={getFetch}
               username={post.user.name + " " + post.user.surname}
