@@ -10,7 +10,7 @@ export default function PostPost({ image, name, surname }) {
   const handleShow = () => setShow(true)
 
   const updatePost = (value) => {
-    setPost({...post.profile, ...post.image, text: value })
+    setPost({...post, text: value })
     console.log(post.text)
   }
 
