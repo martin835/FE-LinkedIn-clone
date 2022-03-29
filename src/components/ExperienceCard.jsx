@@ -30,7 +30,7 @@ export default function ExperienceCard(props) {
 
   let params = useParams()
 
-  const httpFetch = props.parameters === "6241b5a05f0f9cae1d24811c" ?   `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c/experiences` : `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c/experiences` + props.parameters + "/experiences/" 
+  const httpFetch = props.parameters === "6241b5a05f0f9cae1d24811c" ?   `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c/experiences` : `${process.env.REACT_APP_LOCAL}/profile/` + props.parameters + "/experiences/" 
 
 
   const fetchData = async () => {
@@ -114,7 +114,7 @@ export default function ExperienceCard(props) {
             chanId={changeId}
             fetch={fetchData}
           />
-        ))}
+        )).reverse()}
         {selected === true && <AddExperience fetch={fetchData} />}
         {toggle === true && (
           <ModifyExperience

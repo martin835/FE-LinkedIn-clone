@@ -48,7 +48,7 @@ const SinglePost = (props) => {
     `${process.env.REACT_APP_LOCAL}/posts/` + props.unique
       axios({
         method: "post",
-        url: `${process.env.REACT_APP_LOCAL}/posts/` + postId,
+        url: `${process.env.REACT_APP_LOCAL}/posts/` + postId + "/uploadPostCover",
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data",

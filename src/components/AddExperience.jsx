@@ -9,6 +9,8 @@ const AddExperience = (props) => {
     endDate: undefined,
     description: undefined,
     area: undefined,
+    user: "6241b5a05f0f9cae1d24811c"
+
   })
 
   const grabValue = (property, value) => {
@@ -20,13 +22,11 @@ const AddExperience = (props) => {
 
     try {
       await fetch(
-        process.env.local + "/62141c010448b4001511688d/experiences/",
+        `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c/experiences/`,
         {
           method: "POST",
           body: JSON.stringify(experience),
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
             "Content-type": "application/json",
           },
         }

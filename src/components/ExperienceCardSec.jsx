@@ -18,17 +18,13 @@ const ExperienceCardSec = (props) => {
 
 
   const exId =
-    "https://striveschool-api.herokuapp.com/api/profile/" + props.parameters + "/experiences/" +
+  `${process.env.REACT_APP_LOCAL}/profile/` + props.parameters + "/experiences/" +
     props.experienceId
 
   const deleteData = async () => {
     try {
       const response = await fetch(exId, {
-        method: "DELETE",
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
-        },
+        method: "DELETE"
       })
       if (response.ok) {
         props.fetch()
@@ -62,11 +58,9 @@ const ExperienceCardSec = (props) => {
 
     axios({
       method: "post",
-      url: "https://striveschool-api.herokuapp.com/api/profile/62141c010448b4001511688d/experiences/"+ props.experienceId +"/picture",
+      url: `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c/experiences/`+ props.experienceId +"/picture",
       data: formData,
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
         "Content-Type": "multipart/form-data",
       },
     })
