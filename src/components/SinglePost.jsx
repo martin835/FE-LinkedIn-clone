@@ -199,7 +199,7 @@ const SinglePost = (props) => {
           <span>Send</span>
         </div>
       </div>
-      <Comments></Comments>
+      <Comments postId={props.unique}></Comments>
       {clicked && (
         <Form
           className="mt-4"

@@ -26,27 +26,22 @@ const Comments = (props) => {
   const [showAddComment, setShowAddComment] = useState(false);
   const [newComment, setNewComment] = useState({
     comment: "",
-    rate: "",
-    elementId: "",
   });
   const [isLoading, setIsLoading] = useState(true);
 
+  const url = `${process.env.REACT_APP_LOCAL}/posts`;
+
   const loadComments = async () => {
     console.log("i am mounted");
-    let asin = props.asin;
+    let postId = props.postId; //NEED postId HERE
 
     try {
-      let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/comments/" + asin,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNjQ0NTgyZWExZDAwMTViYjAzZWEiLCJpYXQiOjE2NDUxMTYxNTgsImV4cCI6MTY0NjMyNTc1OH0.Z16gZiLDU6QjnSTxxpV46698wp9z7c5rUkjwB965R_s",
-          },
-        }
-      );
+      let response = await fetch(`${url}/${postId}/comments`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         let data = await response.json();
         /* console.log(data) */
@@ -73,25 +68,20 @@ const Comments = (props) => {
     e.preventDefault();
     console.log("I post");
 
-    newComment.rate = document.getElementById("ratingValue").value;
+    // newComment.rate = document.getElementById("ratingValue").value;
     newComment.comment = document.getElementById("commentValue").value;
-    newComment.elementId = props.asin;
+    //newComment.elementId = props.asin;
 
     console.log(newComment);
 
     try {
-      let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/comments/",
-        {
-          method: "POST",
-          body: JSON.stringify(newComment),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNjQ0NTgyZWExZDAwMTViYjAzZWEiLCJpYXQiOjE2NDUxMTYxNTgsImV4cCI6MTY0NjMyNTc1OH0.Z16gZiLDU6QjnSTxxpV46698wp9z7c5rUkjwB965R_s",
-          },
-        }
-      );
+      let response = await fetch(`${url}/${props.postId}/comments`, {
+        method: "POST",
+        body: JSON.stringify(newComment),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         let data = await response.json();
         console.log(data);
@@ -113,13 +103,9 @@ const Comments = (props) => {
 
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/comments/" + e.target.id,
+        `${url}/${props.postId}/comments/` + e.target.id,
         {
           method: "DELETE",
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNjQ0NTgyZWExZDAwMTViYjAzZWEiLCJpYXQiOjE2NDUxMTYxNTgsImV4cCI6MTY0NjMyNTc1OH0.Z16gZiLDU6QjnSTxxpV46698wp9z7c5rUkjwB965R_s",
-          },
         }
       );
       if (response.ok) {
@@ -150,7 +136,7 @@ const Comments = (props) => {
         <ListGroup>
           {isLoading && <Spinner animation="border" variant="primary" />}
           {bookComments == 0 ? (
-            <ListGroup.Item>No Comments for this book :( </ListGroup.Item>
+            <ListGroup.Item>No Comments for this post :( </ListGroup.Item>
           ) : (
             bookComments.map((comment) => (
               <ListGroup.Item key={comment._id}>
@@ -176,15 +162,15 @@ const Comments = (props) => {
           {showAddComment && (
             <ListGroupItem className="px-0">
               <Form onSubmit={postComment}>
-                <Form.Group className="mb-3" controlId="ratingValue">
+                {/*      <Form.Group className="mb-3" controlId="ratingValue">
                   <Form.Label>Rating:</Form.Label>
                   <Form.Control
                     type="number"
                     placeholder="add rating from 1-5"
                   />
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group className="mb-3" controlId="commentValue">
-                  <Form.Label>Example textarea</Form.Label>
+                  <Form.Label>Write a comment</Form.Label>
                   <Form.Control as="textarea" rows={3} />
                 </Form.Group>
                 <Button variant="link" type="submit">
