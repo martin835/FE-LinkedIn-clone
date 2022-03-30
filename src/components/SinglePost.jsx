@@ -1,66 +1,64 @@
-import { useState } from "react"
-import { Form, Button } from "react-bootstrap"
-import axios from "axios"
-import { Link } from "react-router-dom"
-import MainSection from "./MainSection"
+import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import MainSection from "./MainSection";
+import Comments from "./Comments";
 
 const SinglePost = (props) => {
-  const [clicked, setClicked] = useState(false)
+  const [clicked, setClicked] = useState(false);
 
-  const [counter, setCounter] = useState(28)
+  const [counter, setCounter] = useState(28);
 
-  const [like, setLike] = useState(false)
+  const [like, setLike] = useState(false);
 
-
-  const [dots, setDots] = useState(false)
+  const [dots, setDots] = useState(false);
 
   const [post, setPost] = useState({
     text: undefined,
-  })
+  });
 
-  let date = props.date.toLocaleString('en-GB', { timeZone: 'UTC' })
+  let date = props.date.toLocaleString("en-GB", { timeZone: "UTC" });
 
-  
-  const postId = props.unique
+  const postId = props.unique;
   // const userId = "62141c010448b4001511688d"
 
-  const formData = new FormData()
+  const formData = new FormData();
 
-  const poId =
- `${process.env.REACT_APP_LOCAL}/posts/` + props.unique
+  const poId = `${process.env.REACT_APP_LOCAL}/posts/` + props.unique;
 
   const deleteData = async () => {
     try {
       const response = await fetch(poId, {
         method: "DELETE",
-      })
+      });
       if (response.ok) {
-        console.log("Ok")
+        console.log("Ok");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    const posId =
-    `${process.env.REACT_APP_LOCAL}/posts/` + props.unique
-      axios({
-        method: "post",
-        url: `${process.env.REACT_APP_LOCAL}/posts/` + postId + "/uploadPostCover",
-        data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+    event.preventDefault();
+    const posId = `${process.env.REACT_APP_LOCAL}/posts/` + props.unique;
+    axios({
+      method: "post",
+      url:
+        `${process.env.REACT_APP_LOCAL}/posts/` + postId + "/uploadPostCover",
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        props.fetch();
       })
-        .then((response) => {
-          console.log(response)
-          props.fetch()
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      .catch((error) => {
+        console.log(error);
+      });
 
     try {
       const response = await fetch(posId, {
@@ -69,22 +67,19 @@ const SinglePost = (props) => {
         headers: {
           "Content-type": "application/json",
         },
-      })
+      });
       if (response.ok) {
-        console.log("OkOkOk")
-        props.fetch()
+        console.log("OkOkOk");
+        props.fetch();
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
-
-    
-  }
+  };
 
   const grabValue = (value) => {
-    setPost({ text: value })
-  }
+    setPost({ text: value });
+  };
 
   // const updateImg = (e) => {
   //   e.preventDefault()
@@ -110,9 +105,9 @@ const SinglePost = (props) => {
   // }
 
   const uploadImg = (e) => {
-    e.preventDefault()
-    formData.append("post", e.target.files[0])
-  }
+    e.preventDefault();
+    formData.append("post", e.target.files[0]);
+  };
 
   return (
     <div className="card-section p-4 mb-2">
@@ -120,21 +115,25 @@ const SinglePost = (props) => {
         <div className="d-flex align-items-center mb-3">
           <img className="post-img mr-2" src={props.userimg} alt="" />
           <div>
-          <Link to={"/profile/" + props.params} element={<MainSection />}>
-            <h6 className="mb-0 text-black prime"> {props.username}</h6>
-          </Link>
-          <span className="text-muted font-12 text-one">{props.job}</span>
-          <span className="text-muted font-11 text-one">{date.slice(0,10) + " • " + date.slice(11,19)}</span>
+            <Link to={"/profile/" + props.params} element={<MainSection />}>
+              <h6 className="mb-0 text-black prime"> {props.username}</h6>
+            </Link>
+            <span className="text-muted font-12 text-one">{props.job}</span>
+            <span className="text-muted font-11 text-one">
+              {date.slice(0, 10) + " • " + date.slice(11, 19)}
+            </span>
           </div>
         </div>
-       { props.params=== '6241b5a05f0f9cae1d24811c'&& 
-        <i
-          className="bi bi-three-dots d-block"
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            setDots(!dots)
-            setClicked(false)
-          }}></i>}
+        {props.params === "6241b5a05f0f9cae1d24811c" && (
+          <i
+            className="bi bi-three-dots d-block"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              setDots(!dots);
+              setClicked(false);
+            }}
+          ></i>
+        )}
       </div>
       <div className="d-flex justify-content-between">
         <div className="d-flex flex-column">
@@ -149,37 +148,68 @@ const SinglePost = (props) => {
             <i
               className="bi bi-pencil mr-2 d-block"
               style={{ cursor: "pointer" }}
-              onClick={() => setClicked(!clicked)}></i>
+              onClick={() => setClicked(!clicked)}
+            ></i>
             <i
               className="bi bi-trash3 d-block"
               style={{ color: "red", cursor: "pointer" }}
-              onClick={() => {deleteData(); props.fetch()}}></i>
+              onClick={() => {
+                deleteData();
+                props.fetch();
+              }}
+            ></i>
           </div>
         )}
       </div>
       <span className="font-12 text-muted ml-3">{counter}</span>
-      <div className="d-flex justify-content-between font-14 ml-2 mr-2 mt-3" style={{ borderTop: "1px solid gray", paddingTop: "20px" }} >
-          <div className="pointer d-block" onClick={() => {like ? setCounter(counter-1): setCounter(counter+1) ; setLike(!like)}}>
-         {like ?<> <i className="bi bi-hand-thumbs-up text-primary mr-2"></i> <span className="text-primary">Like</span></>:<><i className="bi bi-hand-thumbs-up mr-2"></i>  <span className="">Like</span></>}
-          
-          </div>
-          <div className="pointer">
+      <div
+        className="d-flex justify-content-between font-14 ml-2 mr-2 mt-3"
+        style={{ borderTop: "1px solid gray", paddingTop: "20px" }}
+      >
+        <div
+          className="pointer d-block"
+          onClick={() => {
+            like ? setCounter(counter - 1) : setCounter(counter + 1);
+            setLike(!like);
+          }}
+        >
+          {like ? (
+            <>
+              {" "}
+              <i className="bi bi-hand-thumbs-up text-primary mr-2"></i>{" "}
+              <span className="text-primary">Like</span>
+            </>
+          ) : (
+            <>
+              <i className="bi bi-hand-thumbs-up mr-2"></i>{" "}
+              <span className="">Like</span>
+            </>
+          )}
+        </div>
+        <div className="pointer">
           <i className="bi bi-chat-left-dots mr-2"></i>
-          <span >Comment</span>
-          </div>
-          <div className="pointer">
+          <span>Comment</span>
+        </div>
+        <div className="pointer">
           <i className="bi bi-arrow-90deg-right mr-2"></i>
-          <span >Share</span>
-          </div>
-          <div className="pointer" >
+          <span>Share</span>
+        </div>
+        <div className="pointer">
           <i className="bi bi-send-fill mr-2"></i>
-          <span >Send</span>
-          </div>
-          </div>
+          <span>Send</span>
+        </div>
+      </div>
+      <Comments></Comments>
       {clicked && (
-        <Form className="mt-4"
+        <Form
+          className="mt-4"
           style={{ borderTop: "1px solid gray", paddingTop: "20px" }}
-          onSubmit={(event) => {handleSubmit(event); setDots(!dots); setClicked(!clicked)}}>
+          onSubmit={(event) => {
+            handleSubmit(event);
+            setDots(!dots);
+            setClicked(!clicked);
+          }}
+        >
           <Form.Group controlId="formBasicText">
             <Form.Control
               type="text"
@@ -196,6 +226,6 @@ const SinglePost = (props) => {
         </Form>
       )}
     </div>
-  )
-}
-export default SinglePost
+  );
+};
+export default SinglePost;
