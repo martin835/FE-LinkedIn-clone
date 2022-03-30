@@ -22,12 +22,15 @@ const Comments = (props) => {
     } */
 
   const [bookComments, setBookComments] = useState([]);
-  const [showComments, setShowComments] = useState(false);
+  //const [showComments, setShowComments] = useState(false);
   const [showAddComment, setShowAddComment] = useState(false);
   const [newComment, setNewComment] = useState({
     comment: "",
   });
   const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    loadComments();
+  }, [props.showComments]);
 
   const url = `${process.env.REACT_APP_LOCAL}/posts`;
 
@@ -60,9 +63,9 @@ const Comments = (props) => {
     }
   };
 
-  const unHideComments = () => {
-    showComments ? setShowComments(false) : setShowComments(true);
-  };
+  //   const unHideComments = () => {
+  //     showComments ? setShowComments(false) : setShowComments(true);
+  //   };
 
   const postComment = async (e) => {
     e.preventDefault();
@@ -122,7 +125,7 @@ const Comments = (props) => {
 
   return (
     <div>
-      <Button
+      {/*    <Button
         variant="link"
         className="mb-2"
         onClick={() => {
@@ -131,8 +134,8 @@ const Comments = (props) => {
         }}
       >
         <i className="bi bi-list mr-2"></i>Show comments
-      </Button>
-      {showComments && (
+      </Button> */}
+      {props.showComments && (
         <ListGroup>
           {isLoading && <Spinner animation="border" variant="primary" />}
           {bookComments == 0 ? (

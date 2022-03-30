@@ -18,6 +18,11 @@ const SinglePost = (props) => {
     text: undefined,
   });
 
+  const [showComments, setShowComments] = useState(false);
+  const unHideComments = () => {
+    showComments ? setShowComments(false) : setShowComments(true);
+  };
+
   let date = props.date.toLocaleString("en-GB", { timeZone: "UTC" });
 
   const postId = props.unique;
@@ -186,10 +191,12 @@ const SinglePost = (props) => {
             </>
           )}
         </div>
-        <div className="pointer">
+
+        <div className="pointer" onClick={() => unHideComments()}>
           <i className="bi bi-chat-left-dots mr-2"></i>
           <span>Comment</span>
         </div>
+
         <div className="pointer">
           <i className="bi bi-arrow-90deg-right mr-2"></i>
           <span>Share</span>
@@ -199,7 +206,7 @@ const SinglePost = (props) => {
           <span>Send</span>
         </div>
       </div>
-      <Comments postId={props.unique}></Comments>
+      <Comments postId={props.unique} showComments={showComments}></Comments>
       {clicked && (
         <Form
           className="mt-4"
