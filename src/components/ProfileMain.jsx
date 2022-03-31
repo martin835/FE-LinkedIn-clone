@@ -24,7 +24,8 @@ export default function ProfileMain(props) {
   const formData = new FormData();
 
   const uploadImg = (e) => {
-    formData.append("profile", e.target.files[0]);
+    e.preventDefault();
+    formData.append("image", e.target.files[0]);
   };
 
   const apiL = `${process.env.REACT_APP_LOCAL}/profile/${props.currentAccount}`;
@@ -53,19 +54,19 @@ export default function ProfileMain(props) {
       url:
         `${process.env.REACT_APP_LOCAL}/profile/` +
         props.parameters +
-        "/upload/",
+        "/upload",
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then(function (response) {
-        //handle success
+      .then( (response) =>{
+        fetchData()
         console.log(response);
       })
-      .catch(function (response) {
+      .catch( (error)=> {
         //handle error
-        console.log(response);
+        console.log(error);
       });
   };
 
@@ -149,7 +150,7 @@ export default function ProfileMain(props) {
             <input type="file" name="profile-img" onChange={uploadImg} />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={(e) => submitFile(e)}>
+            <Button variant="secondary" onClick={(e) => {submitFile(e); handleClose()}}>
               Post
             </Button>
           </Modal.Footer>

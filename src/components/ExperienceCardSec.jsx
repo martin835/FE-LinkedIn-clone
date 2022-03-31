@@ -10,7 +10,7 @@ const ExperienceCardSec = (props) => {
   const formData = new FormData();
 
   const uploadImg = (e) => {
-    formData.append("experience", e.target.files[0]);
+    formData.append("image", e.target.files[0]);
   };
 
   const exId =
@@ -65,7 +65,7 @@ const ExperienceCardSec = (props) => {
       },
     })
       .then(function (response) {
-        //handle success
+        props.fetch()
         console.log(response);
       })
       .catch(function (response) {
@@ -123,13 +123,13 @@ const ExperienceCardSec = (props) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Change profile image</Modal.Title>
+          <Modal.Title>Change experience Image</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <input type="file" name="profile-img" onChange={uploadImg} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={(e) => submitFile(e)}>
+          <Button variant="secondary" onClick={(e) => {submitFile(e); handleClose()}}>
             Post
           </Button>
         </Modal.Footer>
