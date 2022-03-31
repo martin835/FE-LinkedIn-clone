@@ -26,6 +26,7 @@ const Comments = (props) => {
   const [showAddComment, setShowAddComment] = useState(false);
   const [newComment, setNewComment] = useState({
     comment: "",
+    profile: "",
   });
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -73,6 +74,7 @@ const Comments = (props) => {
 
     // newComment.rate = document.getElementById("ratingValue").value;
     newComment.comment = document.getElementById("commentValue").value;
+    newComment.profile = props.currentAccount;
     //newComment.elementId = props.asin;
 
     console.log(newComment);
@@ -147,6 +149,7 @@ const Comments = (props) => {
                 <Button variant="link" id={comment._id} onClick={deleteComment}>
                   <i className="bi bi-trash3"></i>Delete
                 </Button>
+                <div>Author: {comment.profile.name} </div>
               </ListGroup.Item>
             ))
           )}

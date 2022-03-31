@@ -216,7 +216,11 @@ const SinglePost = (props) => {
           <span>Send</span>
         </div>
       </div>
-      <Comments postId={props.unique} showComments={showComments}></Comments>
+      <Comments
+        postId={props.unique}
+        showComments={showComments}
+        currentAccount={props.currentAccount}
+      ></Comments>
       {clicked && (
         <Form
           className="mt-4"
