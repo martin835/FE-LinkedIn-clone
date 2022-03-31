@@ -15,6 +15,8 @@ function App() {
     imageRendered = !imageRendered;
   });
 
+  const currentAccount = "6241b5955f0f9cae1d24811a";
+
   let imageRendered = true;
 
   /* const changeImg = (value) => {
@@ -29,18 +31,25 @@ function App() {
   return (
     <HashRouter basename="/">
       {imageRendered ? (
-        <MyNavbar image={img} funcD={fet} />
+        <MyNavbar image={img} funcD={fet} currentAccount={currentAccount} />
       ) : (
-        <MyNavbar funcD={fet} />
+        <MyNavbar funcD={fet} currentAccount={currentAccount} />
       )}
       <Routes>
         <Route
           path="/"
-          element={<NewsMain changeImg={(value) => setImg(value)} />}
+          element={
+            <NewsMain
+              changeImg={(value) => setImg(value)}
+              currentAccount={currentAccount}
+            />
+          }
         />
         <Route
           path="/profile/:profileId"
-          element={<MainSection D={changeFet} />}
+          element={
+            <MainSection D={changeFet} currentAccount={currentAccount} />
+          }
         />
       </Routes>
     </HashRouter>

@@ -1,50 +1,48 @@
-import { useEffect, useState } from "react"
-import SinglePost from "./SinglePost"
+import { useEffect, useState } from "react";
+import SinglePost from "./SinglePost";
 
 const GetAPost = (props) => {
-  const [posts, setPosts] = useState(undefined)
-
+  const [posts, setPosts] = useState(undefined);
 
   useEffect(() => {
-    getFetch()
-   
+    getFetch();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [!props.refe])
+  }, [!props.refe]);
 
   const change = (value) => {
-    setPosts(value)
-  }
+    setPosts(value);
+  };
 
-
-const apiL =  `${process.env.REACT_APP_LOCAL}/posts`
+  const apiL = `${process.env.REACT_APP_LOCAL}/posts`;
 
   const getFetch = async () => {
     try {
-      let response = await fetch(
-      apiL
-      )
-      let data = await response.json()
-      change(data)
-      console.log(data)
+      let response = await fetch(apiL);
+      let data = await response.json();
+      change(data);
+      console.log(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-  
+  };
+
   return (
     <>
       {posts === undefined && (
         <div
           className="spinner-border text-primary"
           style={{ marginLeft: "47%" }}
-          role="status">
+          role="status"
+        >
           <span className="sr-only">Loading...</span>
         </div>
       )}
       {posts &&
-        posts.map((post) => (
+        posts
+          .map((post) => (
             <SinglePost
-            fetch={getFetch}
+              fetch={getFetch}
               username={post.profile.name + " " + post.profile.surname}
               image={post.image}
               text={post.text}
@@ -54,10 +52,12 @@ const apiL =  `${process.env.REACT_APP_LOCAL}/posts`
               userimg={post.profile.image}
               job={post.profile.title}
               date={post.createdAt}
+              currentAccount={props.currentAccount}
             />
-          )).reverse()}
+          ))
+          .reverse()}
     </>
-  )
-}
+  );
+};
 
-export default GetAPost
+export default GetAPost;

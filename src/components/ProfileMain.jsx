@@ -1,57 +1,57 @@
-import { Row, Col, Button, Modal } from "react-bootstrap"
-import { useEffect, useState } from "react"
-import "../App.css"
-import "../profile.css"
-import axios from "axios"
-import { useParams } from "react-router-dom"
+import { Row, Col, Button, Modal } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import "../App.css";
+import "../profile.css";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function ProfileMain(props) {
-  const [user, setUser] = useState({})
-  const [show, setShow] = useState(false)
+  const [user, setUser] = useState({});
+  const [show, setShow] = useState(false);
 
-  let params = useParams()
+  let params = useParams();
 
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
-    fetchData()
-    props.bio(user.bio)
-    props.fetchD(fetchData)
+    fetchData();
+    props.bio(user.bio);
+    props.fetchD(fetchData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [!user.bio])
+  }, [!user.bio]);
 
-  const formData = new FormData()
+  const formData = new FormData();
 
   const uploadImg = (e) => {
-    formData.append("profile", e.target.files[0])
-  }
+    formData.append("profile", e.target.files[0]);
+  };
 
-  const apiL= `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c`
+  const apiL = `${process.env.REACT_APP_LOCAL}/profile/${props.currentAccount}`;
 
   const httpFetch =
-    props.parameters === "6241b5a05f0f9cae1d24811c"
+    props.parameters === props.currentAccount
       ? apiL
-      : `${process.env.REACT_APP_LOCAL}/profile/` + props.parameters
+      : `${process.env.REACT_APP_LOCAL}/profile/` + props.parameters;
 
   const fetchData = async () => {
     try {
-      const response = await fetch(httpFetch)
-      const data = await response.json()
-      console.log(data)
-      setUser(data)
+      const response = await fetch(httpFetch);
+      const data = await response.json();
+      console.log(data);
+      setUser(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const submitFile = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     axios({
       method: "post",
       url:
-      `${process.env.REACT_APP_LOCAL}/profile/` +
+        `${process.env.REACT_APP_LOCAL}/profile/` +
         props.parameters +
         "/upload/",
       data: formData,
@@ -61,13 +61,13 @@ export default function ProfileMain(props) {
     })
       .then(function (response) {
         //handle success
-        console.log(response)
+        console.log(response);
       })
       .catch(function (response) {
         //handle error
-        console.log(response)
-      })
-  }
+        console.log(response);
+      });
+  };
 
   return (
     <div className="card-section profile-main mb-3">
@@ -77,7 +77,7 @@ export default function ProfileMain(props) {
         alt="cover"
       />
       <img className="profile-img object-top" src={user.image} alt="profile" />
-      {params.profileId === "6241b5a05f0f9cae1d24811c" && (
+      {params.profileId === props.currentAccount && (
         <i className="bi bi-pencil pen-lg" onClick={() => handleShow()}></i>
       )}
       <div className="profile-card m-4">
@@ -104,7 +104,7 @@ export default function ProfileMain(props) {
           </Col>
         </Row>
         <Row>
-          {params.profileId === "6241b5a05f0f9cae1d24811c" && (
+          {params.profileId === props.currentAccount && (
             <>
               <div className="pl-3 mt-4 d-flex align-items-center">
                 <Button className="generic-btn">Open to</Button>
@@ -156,5 +156,5 @@ export default function ProfileMain(props) {
         </Modal>
       </div>
     </div>
-  )
+  );
 }

@@ -25,8 +25,7 @@ const SinglePost = (props) => {
 
   let date = props.date.toLocaleString("en-GB", { timeZone: "UTC" });
 
-  const postId = props.unique;
-  // const userId = "62141c010448b4001511688d"
+  const postId = props.currentAccount;
 
   const formData = new FormData();
 
@@ -129,7 +128,7 @@ const SinglePost = (props) => {
             </span>
           </div>
         </div>
-        {props.params === "6241b5a05f0f9cae1d24811c" && (
+        {props.params === props.currentAccount && (
           <i
             className="bi bi-three-dots d-block"
             style={{ cursor: "pointer" }}

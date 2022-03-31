@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Form, Button } from "react-bootstrap"
+import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
 const AddExperience = (props) => {
   const [experience, setExperience] = useState({
@@ -9,20 +9,19 @@ const AddExperience = (props) => {
     endDate: undefined,
     description: undefined,
     area: undefined,
-    user: "6241b5a05f0f9cae1d24811c"
-
-  })
+    user: props.currentAccount,
+  });
 
   const grabValue = (property, value) => {
-    setExperience({ ...experience, [property]: value })
-  }
+    setExperience({ ...experience, [property]: value });
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     try {
       await fetch(
-        `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c/experiences/`,
+        `${process.env.REACT_APP_LOCAL}/profile/${props.currentAccount}/experiences/`,
         {
           method: "POST",
           body: JSON.stringify(experience),
@@ -30,12 +29,12 @@ const AddExperience = (props) => {
             "Content-type": "application/json",
           },
         }
-      )
-      props.fetch()
+      );
+      props.fetch();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <Form onSubmit={(event) => handleSubmit(event)}>
@@ -97,6 +96,6 @@ const AddExperience = (props) => {
         Submit
       </Button>
     </Form>
-  )
-}
-export default AddExperience
+  );
+};
+export default AddExperience;
