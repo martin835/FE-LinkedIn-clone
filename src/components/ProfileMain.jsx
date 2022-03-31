@@ -19,7 +19,7 @@ export default function ProfileMain(props) {
     props.bio(user.bio);
     props.fetchD(fetchData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [!user.bio]);
+  }, [props.parameters]);
 
   const formData = new FormData();
 
