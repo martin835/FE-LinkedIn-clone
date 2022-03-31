@@ -6,12 +6,13 @@ export default function PostPost({
   name,
   surname,
   refe,
-  currentAccount,
+  setAgain,
+  again,
 }) {
   const [post, setPost] = useState({
     text: undefined,
     image: "",
-    profile: currentAccount,
+    profile: "6241b5a05f0f9cae1d24811c",
   });
 
   const [show, setShow] = useState(false);
@@ -25,8 +26,10 @@ export default function PostPost({
   };
 
   const handleSubmit = async (event) => {
+    // window.location.reload(false);
     event.preventDefault();
     console.log("working");
+    setAgain(!again);
 
     const apiL = `${process.env.REACT_APP_LOCAL}/posts`;
 
@@ -122,7 +125,6 @@ export default function PostPost({
               onClick={(e) => {
                 handleSubmit(e);
                 handleClose();
-                refe(true);
               }}
             >
               Post
