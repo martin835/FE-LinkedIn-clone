@@ -12,7 +12,7 @@ export default function PostPost({
   const [post, setPost] = useState({
     text: undefined,
     image: "",
-    profile: "6241b5a05f0f9cae1d24811c",
+    profile: "6241b5955f0f9cae1d24811a",
   });
 
   const [show, setShow] = useState(false);

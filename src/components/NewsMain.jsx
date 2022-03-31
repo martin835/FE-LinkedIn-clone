@@ -6,7 +6,7 @@ import LinkedNews from "./LinkedNews";
 import HomeFooter from "./HomeFooter";
 import { useState, useEffect } from "react";
 
-const NewsMain = ({ changeImg }) => {
+const NewsMain = ({ changeImg, currentAccount }) => {
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState(undefined);
   const [again, setAgain] = useState(true);
@@ -40,7 +40,7 @@ const NewsMain = ({ changeImg }) => {
   //   setFe(value);
   // };
 
-  const apiL = `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c`;
+  const apiL = `${process.env.REACT_APP_LOCAL}/profile/${currentAccount}`;
 
   const fetchData = async () => {
     try {
