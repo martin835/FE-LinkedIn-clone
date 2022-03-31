@@ -97,6 +97,7 @@ const NewsMain = ({ changeImg, currentAccount }) => {
                     job={post.profile.title}
                     date={post.createdAt}
                     currentAccount={currentAccount}
+                    post={post}
                   />
                 ))
                 .reverse()}

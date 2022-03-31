@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import Comments from "./Comments";
 const SinglePost = (props) => {
   const [clicked, setClicked] = useState(false);
 
-  const [counter, setCounter] = useState(28);
+  const [counter, setCounter] = useState(0);
 
   const [like, setLike] = useState(false);
 
@@ -22,6 +22,10 @@ const SinglePost = (props) => {
   const unHideComments = () => {
     showComments ? setShowComments(false) : setShowComments(true);
   };
+
+  useEffect(() => {
+    setCounter(props.post.likes.length);
+  }, []);
 
   let date = props.date.toLocaleString("en-GB", { timeZone: "UTC" });
 
@@ -85,29 +89,42 @@ const SinglePost = (props) => {
     setPost({ text: value });
   };
 
-  // const updateImg = (e) => {
-  //   e.preventDefault()
+  const updatePost = async () => {
+    console.log("Update after like");
 
-  //   axios({
-  //     method: "post",
-  //     url: "https://striveschool-api.herokuapp.com/api/profile/62141c010448b4001511688d/picture/",
-  //     data: formData,
-  //     headers: {
-  //       Authorization:
-  //         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjE0MWMwMTA0NDhiNDAwMTUxMTY4OGQiLCJpYXQiOjE2NDU0ODUwNTcsImV4cCI6MTY0NjY5NDY1N30.RpYP2LhIfMwWh9okgKoO9hO9xHHxMIrpOw6PlnVfviI",
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   })
-  //     .then(function (response) {
-  //       //handle success
-  //       console.log(response)
-  //     })
-  //     .catch(function (response) {
-  //       //handle error
-  //       console.log(response)
-  //     })
-  // }
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_LOCAL}/posts/${props.unique}`
+      );
+      const data = await response.json();
+      console.log("This should be liked post: ", data);
+      setCounter(data.likes.length);
+      // refetch here
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  const handleLike = async (event) => {
+    event.preventDefault();
+    console.log("LIKE!");
+
+    const apiL = `${process.env.REACT_APP_LOCAL}/posts/${props.unique}/likes`;
+
+    try {
+      await fetch(apiL, {
+        method: "POST",
+        body: JSON.stringify({ id: props.currentAccount }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      // refetch here
+      updatePost();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const uploadImg = (e) => {
     e.preventDefault();
     formData.append("post", e.target.files[0]);
@@ -170,13 +187,7 @@ const SinglePost = (props) => {
         className="d-flex justify-content-between font-14 ml-2 mr-2 mt-3"
         style={{ borderTop: "1px solid gray", paddingTop: "20px" }}
       >
-        <div
-          className="pointer d-block"
-          onClick={() => {
-            like ? setCounter(counter - 1) : setCounter(counter + 1);
-            setLike(!like);
-          }}
-        >
+        <div className="pointer d-block" onClick={(event) => handleLike(event)}>
           {like ? (
             <>
               {" "}
