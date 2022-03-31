@@ -1,43 +1,59 @@
-import "./App.css"
-import MyNavbar from "./components/MyNavbar"
-import MainSection from "./components/MainSection"
-import { useEffect, useState } from "react"
-import { HashRouter, Routes, Route } from "react-router-dom"
-import NewsMain from "./components/NewsMain"
+import "./App.css";
+import MyNavbar from "./components/MyNavbar";
+import MainSection from "./components/MainSection";
+import { useEffect, useState } from "react";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import NewsMain from "./components/NewsMain";
 
 function App() {
-  const [img, setImg] = useState()
-  const [fet, setFet] = useState()
+  const [img, setImg] = useState();
+  const [fet, setFet] = useState();
   // useEffect(changeImg)
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    imageRendered = !imageRendered
+    imageRendered = !imageRendered;
+  });
 
-  })
+  const currentAccount = "6241b5955f0f9cae1d24811a";
 
-  let imageRendered = true
+  let imageRendered = true;
 
-  const changeImg = (value) => {
+  /* const changeImg = (value) => {
     setImg(value)
     // console.log(value)
-  }
+  } */
 
   const changeFet = (value) => {
-    setFet(value)
-  }
-
-
+    setFet(value);
+  };
 
   return (
     <HashRouter basename="/">
-      {imageRendered ? <MyNavbar image={img} funcD={fet} /> : <MyNavbar funcD={fet} />}
+      {imageRendered ? (
+        <MyNavbar image={img} funcD={fet} currentAccount={currentAccount} />
+      ) : (
+        <MyNavbar funcD={fet} currentAccount={currentAccount} />
+      )}
       <Routes>
-        <Route path="/" element={<NewsMain changeImg={changeImg} />} />
-        <Route path="/profile/:profileId" element={<MainSection D={changeFet} />} />
+        <Route
+          path="/"
+          element={
+            <NewsMain
+              changeImg={(value) => setImg(value)}
+              currentAccount={currentAccount}
+            />
+          }
+        />
+        <Route
+          path="/profile/:profileId"
+          element={
+            <MainSection D={changeFet} currentAccount={currentAccount} />
+          }
+        />
       </Routes>
     </HashRouter>
-  )
+  );
 }
 
-export default App
+export default App;

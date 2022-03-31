@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Form, Button } from "react-bootstrap"
+import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
 const ModifyExperience = (props) => {
   const [experience, setExperience] = useState({
@@ -9,18 +9,18 @@ const ModifyExperience = (props) => {
     endDate: undefined,
     description: undefined,
     area: undefined,
-  })
+  });
 
   const grabValue = (property, value) => {
-    setExperience({ ...experience, [property]: value })
-  }
+    setExperience({ ...experience, [property]: value });
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c/experiences/` +
+        `${process.env.REACT_APP_LOCAL}/profile/${props.currentAccount}/experiences/` +
           props.thisId,
         {
           method: "PUT",
@@ -29,14 +29,14 @@ const ModifyExperience = (props) => {
             "Content-type": "application/json",
           },
         }
-      )
+      );
       if (response.ok) {
-        props.fetch()
+        props.fetch();
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <Form onSubmit={(event) => handleSubmit(event)}>
@@ -104,6 +104,6 @@ const ModifyExperience = (props) => {
         Submit
       </Button>
     </Form>
-  )
-}
-export default ModifyExperience
+  );
+};
+export default ModifyExperience;

@@ -5,39 +5,36 @@ import {
   Nav,
   FormControl,
   NavDropdown,
-} from "react-bootstrap"
-import { Link, useLocation } from "react-router-dom"
-import NewsMain from "./NewsMain"
-import MainSection from "./MainSection"
-import { useEffect, useState } from "react"
+} from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
+import NewsMain from "./NewsMain";
+import MainSection from "./MainSection";
+import { useEffect, useState } from "react";
 
+const MyNavbar = function ({ image, funcD, currentAccount }) {
+  const [user, setUser] = useState({});
 
-const MyNavbar = function ({ image, funcD }) {
- 
-
-  const [user, setUser] = useState({})
-
-  const location = useLocation()
+  const location = useLocation();
   // let imageRendered = false
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     // imageRendered = !imageRendered
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
-  const apiL= `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c`
+  const apiL = `${process.env.REACT_APP_LOCAL}/profile/${currentAccount}`;
 
   const fetchData = async () => {
     try {
-      const response = await fetch(apiL)
-      const data = await response.json()
-      console.log(data)
-      setUser(data)
+      const response = await fetch(apiL);
+      const data = await response.json();
+      console.log(data);
+      setUser(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   // useEffect(console.log(image))
 
@@ -49,7 +46,11 @@ const MyNavbar = function ({ image, funcD }) {
         <Navbar expand="lg" className="mb-4">
           <i className="bi bi-linkedin small-bi-li mr-2"></i>
           <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2 search-small" />
+            <FormControl
+              type="text"
+              placeholder="Search"
+              className="mr-sm-2 search-small"
+            />
           </Form>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -61,7 +62,8 @@ const MyNavbar = function ({ image, funcD }) {
                   location.pathname === "/"
                     ? "mr-4 font-12 text-black"
                     : "mr-4 font-12 text-muted"
-                }>
+                }
+              >
                 <i className="bi bi-house-door-fill"></i>Home
               </Link>
               <div className="mr-4 font-12">
@@ -78,10 +80,10 @@ const MyNavbar = function ({ image, funcD }) {
               </div>
               <div className="mr-4 mt-1">
                 <Link
-                  to= "/profile/6241b5a05f0f9cae1d24811c"
+                  to={`/profile/${currentAccount}`}
                   element={<MainSection />}
                   className={
-                    location.pathname === `/profile/6241b5a05f0f9cae1d24811c`
+                    location.pathname === `/profile/${currentAccount}`
                       ? "text-black"
                       : "text-muted"
                   }
@@ -92,10 +94,11 @@ const MyNavbar = function ({ image, funcD }) {
                   title="Me"
                   id="profile-nav-dropdown"
                   className={
-                    location.pathname === `/profile/6241b5a05f0f9cae1d24811c`
+                    location.pathname === `/profile/${currentAccount}`
                       ? "text-black"
                       : "text-muted"
-                  }>
+                  }
+                >
                   <NavDropdown.Item>Action</NavDropdown.Item>
                   <NavDropdown.Item>Another action</NavDropdown.Item>
                   <NavDropdown.Item>Something</NavDropdown.Item>
@@ -123,7 +126,7 @@ const MyNavbar = function ({ image, funcD }) {
         </Navbar>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default MyNavbar
+export default MyNavbar;

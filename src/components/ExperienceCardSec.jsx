@@ -1,42 +1,39 @@
-import { useState } from "react"
-import { Image, Modal, Button } from "react-bootstrap"
-import axios from "axios"
-
+import { useState } from "react";
+import { Image, Modal, Button } from "react-bootstrap";
+import axios from "axios";
 
 const ExperienceCardSec = (props) => {
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
-  const [show, setShow] = useState(false)
-  const handleShow = () => setShow(true)
-  const handleClose = () => setShow(false)
-
-  const formData = new FormData()
+  const formData = new FormData();
 
   const uploadImg = (e) => {
-    formData.append("experience", e.target.files[0])
-  }
-
-
+    formData.append("experience", e.target.files[0]);
+  };
 
   const exId =
-  `${process.env.REACT_APP_LOCAL}/profile/` + props.parameters + "/experiences/" +
-    props.experienceId
+    `${process.env.REACT_APP_LOCAL}/profile/` +
+    props.parameters +
+    "/experiences/" +
+    props.experienceId;
 
   const deleteData = async () => {
     try {
       const response = await fetch(exId, {
-        method: "DELETE"
-      })
+        method: "DELETE",
+      });
       if (response.ok) {
-        props.fetch()
+        props.fetch();
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-
+  };
 
   const submitFile = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // axios
     //   .post(
@@ -58,7 +55,10 @@ const ExperienceCardSec = (props) => {
 
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c/experiences/`+ props.experienceId +"/picture",
+      url:
+        `${process.env.REACT_APP_LOCAL}/profile/${props.currentAccount}/experiences/` +
+        props.experienceId +
+        "/picture",
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -66,15 +66,15 @@ const ExperienceCardSec = (props) => {
     })
       .then(function (response) {
         //handle success
-        console.log(response)
+        console.log(response);
       })
       .catch(function (response) {
         //handle error
-        console.log(response)
-      })
-  }
+        console.log(response);
+      });
+  };
 
-  let variable = props.selected
+  let variable = props.selected;
 
   return (
     <div className="d-flex justify-content-between" style={props.border}>
@@ -82,7 +82,8 @@ const ExperienceCardSec = (props) => {
         <Image
           className="experience-image"
           src={props.image}
-          alt="experience image"></Image>
+          alt="experience image"
+        ></Image>
         <div className="mb-2">
           <h5 className="font-16">{props.titleText}</h5>
           <span className="d-block font-14">{props.description}</span>
@@ -92,12 +93,15 @@ const ExperienceCardSec = (props) => {
       </div>
       {variable === true && (
         <div className="d-flex">
-          <i className="bi bi-image font-18 mr-2 text-lightBlue" onClick={handleShow}></i>
+          <i
+            className="bi bi-image font-18 mr-2 text-lightBlue"
+            onClick={handleShow}
+          ></i>
           <i
             className="bi bi-pencil mr-2"
             style={{ cursor: "pointer" }}
             onClick={() => {
-              props.toggle()
+              props.toggle();
               props.experience(
                 props.titleText,
                 props.company,
@@ -105,33 +109,33 @@ const ExperienceCardSec = (props) => {
                 props.end,
                 props.description,
                 props.location
-              )
-              props.chanId(props.experienceId)
-            }}></i>
+              );
+              props.chanId(props.experienceId);
+            }}
+          ></i>
           <i
             className="bi bi-trash3"
             style={{ color: "red", cursor: "pointer" }}
-            onClick={() => deleteData()}></i>
+            onClick={() => deleteData()}
+          ></i>
         </div>
       )}
 
-<Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Change profile image</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <input type="file" name="profile-img" onChange={uploadImg} />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={(e) => submitFile(e)}>
-              Post
-            </Button>
-          </Modal.Footer>
-        </Modal>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Change profile image</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <input type="file" name="profile-img" onChange={uploadImg} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={(e) => submitFile(e)}>
+            Post
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default ExperienceCardSec
-
-
+export default ExperienceCardSec;

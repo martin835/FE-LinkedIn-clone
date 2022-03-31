@@ -1,47 +1,43 @@
-import { Row, Col } from "react-bootstrap"
-import HomeSidebarLeft from "./HomeSidebarLeft"
-import PostPost from "./PostPost"
-import GetAPost from "./GetAPost"
-import LinkedNews from "./LinkedNews"
-import HomeFooter from "./HomeFooter"
-import { useState, useEffect } from "react"
+import { Row, Col } from "react-bootstrap";
+import HomeSidebarLeft from "./HomeSidebarLeft";
+import PostPost from "./PostPost";
+import GetAPost from "./GetAPost";
+import LinkedNews from "./LinkedNews";
+import HomeFooter from "./HomeFooter";
+import { useState, useEffect } from "react";
 
-const NewsMain = ({ changeImg }) => {
-  const [user, setUser] = useState({})
+const NewsMain = ({ changeImg, currentAccount }) => {
+  const [user, setUser] = useState({});
 
-  const [fe, setFe] = useState(false)
-
+  const [fe, setFe] = useState(false);
 
   const changeFe = (value) => {
-    setFe(value)
-  }
+    setFe(value);
+  };
 
-  const apiL= `${process.env.REACT_APP_LOCAL}/profile/6241b5a05f0f9cae1d24811c`
+  const apiL = `${process.env.REACT_APP_LOCAL}/profile/${currentAccount}`;
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        apiL
-      )
-      const data = await response.json()
-      changeImg(data.image)
-      setUser(data)
+      const response = await fetch(apiL);
+      const data = await response.json();
+      changeImg(data.image);
+      setUser(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-
+  };
 
   useEffect(() => {
-    fetchData()
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [!user])
+  }, [!user]);
 
   return (
     <div className="container padding-sec">
       <Row className="m-auto">
         <Col md={2}>
-          <HomeSidebarLeft user={user} />
+          <HomeSidebarLeft user={user} currentAccount={currentAccount} />
         </Col>
         <Col md={6}>
           <PostPost
@@ -49,8 +45,9 @@ const NewsMain = ({ changeImg }) => {
             name={user.name}
             surname={user.surname}
             refe={changeFe}
+            currentAccount={currentAccount}
           />
-          <GetAPost refe={fe} />
+          <GetAPost refe={fe} currentAccount={currentAccount} />
         </Col>
         <Col md={4}>
           <LinkedNews title={"LinkedIn News"} />
@@ -58,7 +55,7 @@ const NewsMain = ({ changeImg }) => {
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default NewsMain
+export default NewsMain;
