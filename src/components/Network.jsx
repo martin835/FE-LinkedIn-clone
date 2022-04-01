@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import SingleFriend from "./SingleFriend";
 
-export default function Network() {
+export default function Network({currentAccount}) {
   const [friends, setFriends] = useState(null);
-  const apiL = `${process.env.REACT_APP_LOCAL}/profile/6241b5955f0f9cae1d24811a`;
+  const apiL = `${process.env.REACT_APP_LOCAL}/profile/${currentAccount}`;
 
   const fetchData = async () => {
     try {
