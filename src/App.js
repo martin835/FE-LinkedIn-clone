@@ -52,7 +52,7 @@ function App() {
             <MainSection D={changeFet} currentAccount={currentAccount} />
           }
         />
-        <Route path="/network" element={<Network />} />
+        <Route path="/network" element={<Network currentAccount={currentAccount} />} />
       </Routes>
     </HashRouter>
   );
