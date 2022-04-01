@@ -7,6 +7,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import useDidUpdateEffect from "../hooks/useDidUpdateEffect";
 
 const Comments = (props) => {
   /* state = {
@@ -29,14 +30,21 @@ const Comments = (props) => {
     profile: "",
   });
   const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    loadComments();
+
+  useDidUpdateEffect(() => {
+    if (props.showComments) {
+      loadComments();
+    }
   }, [props.showComments]);
+
+  /*   useEffect(() => {
+    loadComments();
+  }, [props.showComments]); */
 
   const url = `${process.env.REACT_APP_LOCAL}/posts`;
 
   const loadComments = async () => {
-    console.log("i am mounted");
+    console.log("Console log - Loading comment");
     let postId = props.postId; //NEED postId HERE
 
     try {
