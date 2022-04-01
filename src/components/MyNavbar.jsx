@@ -18,9 +18,8 @@ const MyNavbar = function ({ image, funcD, currentAccount }) {
   const location = useLocation();
   // let imageRendered = false
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // imageRendered = !imageRendered
     fetchData();
   }, []);
 
