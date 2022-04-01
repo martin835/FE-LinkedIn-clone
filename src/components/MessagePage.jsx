@@ -10,7 +10,10 @@ export default function MessagePage({name, _id}) {
       <Link to={"/profile/" + _id} element={<MainSection />}>
         <div className="font-weight-bold side-name font-18 text-black prime text-one">{name}</div>
         </Link>
-        <div className="messageTable"></div>
+        <div className="messageTable p-2">
+          <div className="mt-1 mb-1">I was wondering</div>
+          <div className="mt-1 mb-1">I was wondering</div>
+        </div>
         <input type="text" />
         <Button
        className="mt-1 generic-btn side-btn font-weight-bold font-16 "
