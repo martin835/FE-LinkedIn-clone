@@ -11,6 +11,7 @@ import NewsMain from "./NewsMain";
 import MainSection from "./MainSection";
 import { useEffect, useState } from "react";
 import Network from "./Network";
+import Messages from "./Messages";
 
 const MyNavbar = function ({ image, funcD, currentAccount }) {
   const [user, setUser] = useState({});
@@ -82,9 +83,19 @@ const MyNavbar = function ({ image, funcD, currentAccount }) {
               <div className="mr-4 font-12">
                 <i className="bi bi-briefcase-fill"></i>Jobs
               </div>
-              <div className="mr-4 font-12">
+              <Link
+                to="/messages"
+                element={<Messages />}
+                className={
+                  location.pathname === "/messages"
+                    ? "mr-4 font-12 text-black"
+                    : "mr-4 font-12 text-muted"
+                }
+              >
+              <div className="font-12">
                 <i className="bi bi-chat-dots-fill"></i>Message
               </div>
+              </Link>
               <div className="mr-4 font-12">
                 <i className="bi bi-bell-fill"></i>Notifications
               </div>

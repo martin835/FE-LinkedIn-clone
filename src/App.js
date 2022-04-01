@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import NewsMain from "./components/NewsMain";
 import Network from "./components/Network";
+import Messages from "./components/Messages";
 
 function App() {
   const [img, setImg] = useState();
@@ -53,6 +54,7 @@ function App() {
           }
         />
         <Route path="/network" element={<Network currentAccount={currentAccount} />} />
+        <Route path="/messages" element={<Messages currentAccount={currentAccount} />} />
       </Routes>
     </HashRouter>
   );
