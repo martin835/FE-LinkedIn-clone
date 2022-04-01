@@ -29,7 +29,6 @@ const MyNavbar = function ({ image, funcD, currentAccount }) {
     try {
       const response = await fetch(apiL);
       const data = await response.json();
-      console.log(data);
       setUser(data);
     } catch (error) {
       console.log(error);
