@@ -10,6 +10,7 @@ import { Link, useLocation } from "react-router-dom";
 import NewsMain from "./NewsMain";
 import MainSection from "./MainSection";
 import { useEffect, useState } from "react";
+import Network from "./Network";
 
 const MyNavbar = function ({ image, funcD, currentAccount }) {
   const [user, setUser] = useState({});
@@ -17,9 +18,8 @@ const MyNavbar = function ({ image, funcD, currentAccount }) {
   const location = useLocation();
   // let imageRendered = false
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // imageRendered = !imageRendered
     fetchData();
   }, []);
 
@@ -66,9 +66,19 @@ const MyNavbar = function ({ image, funcD, currentAccount }) {
               >
                 <i className="bi bi-house-door-fill"></i>Home
               </Link>
-              <div className="mr-4 font-12">
-                <i className="bi bi-people-fill"></i>NetWork
-              </div>
+              <Link
+                to="/network"
+                element={<Network />}
+                className={
+                  location.pathname === "/network"
+                    ? "mr-4 font-12 text-black"
+                    : "mr-4 font-12 text-muted"
+                }
+              >
+                <div className="mr-4 font-12">
+                  <i className="bi bi-people-fill"></i>NetWork
+                </div>
+              </Link>
               <div className="mr-4 font-12">
                 <i className="bi bi-briefcase-fill"></i>Jobs
               </div>
