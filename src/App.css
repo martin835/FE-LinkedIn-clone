@@ -361,4 +361,8 @@ footer .bi-linkedin {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.comments-box {
+  background-color: var(--highlight-gray) !important;
+}
 /* Martin - comments styles END */

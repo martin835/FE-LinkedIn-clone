@@ -149,7 +149,7 @@ const Comments = (props) => {
         <i className="bi bi-list mr-2"></i>Show comments
       </Button> */}
       {props.showComments && (
-        <ListGroup className="mt-3" variant="flush">
+        <ListGroup className="mt-3 comments-box" variant="flush">
           {isLoading && <Spinner animation="border" variant="primary" />}
           {bookComments == 0 ? (
             <ListGroup.Item variant="flush">
