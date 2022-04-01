@@ -7,7 +7,7 @@ export default function MessagePage({name, _id, currentAccount}) {
 
   const [messages, setMessages] = useState(null)
 
-  const [text, setText] = useState(undefined)
+  const [text, setText] = useState({text: undefined})
 
   const apiMessage = (id, type, secondId) => `${process.env.REACT_APP_LOCAL}/message/${id}/${type}/${secondId}`;
 
@@ -54,11 +54,11 @@ export default function MessagePage({name, _id, currentAccount}) {
         <div className="font-weight-bold side-name font-18 text-black prime text-one">{name}</div>
         </Link>
         <div className="messageTable p-2">
-          {messages && messages.map(message =>    <> <div className="d-flex flex-column border message"><div className="font-weight-bold font-16">{message.sender.name}</div><div className="mt-1 mb-1 font-14">{message.text}</div></div></>)
+          {messages && messages.map(message =>    <div key={message._id}> <div className="d-flex flex-column border message"><div className="font-weight-bold font-16">{message.sender.name}</div><div className="mt-1 mb-1 font-14">{message.text}</div></div></div>)
        
 }
         </div>
-        <input type="text" onChange={(e)=> setText(e.target.value)}/>
+        <input type="text" onChange={(e)=> {setText({text: e.target.value}); console.log(text)}}/>
         <Button
        className="mt-1 generic-btn side-btn font-weight-bold font-16 "
        variant="outline-primary"
