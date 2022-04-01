@@ -4,6 +4,7 @@ import MainSection from "./components/MainSection";
 import { useEffect, useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import NewsMain from "./components/NewsMain";
+import Network from "./components/Network";
 
 function App() {
   const [img, setImg] = useState();
@@ -51,6 +52,7 @@ function App() {
             <MainSection D={changeFet} currentAccount={currentAccount} />
           }
         />
+        <Route path="/network" element={<Network />} />
       </Routes>
     </HashRouter>
   );
