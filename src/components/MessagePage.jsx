@@ -7,11 +7,11 @@ export default function MessagePage({name, _id, currentAccount}) {
 
   const [messages, setMessages] = useState(null)
 
-  const apiFriend = (id, type, secondId) => `${process.env.REACT_APP_LOCAL}/message/${id}/${type}/${secondId}`;
+  const apiMessage = (id, type, secondId) => `${process.env.REACT_APP_LOCAL}/message/${id}/${type}/${secondId}`;
 
   const manageMessages = async (id, type, secondId, method) => {
     try {
-      const response = await fetch(apiFriend(id, type, secondId),{method: method} );
+      const response = await fetch(apiMessage(id, type, secondId),{method: method} );
       const data = await response.json();
       setMessages(data)
     } catch (error) {
@@ -32,7 +32,7 @@ export default function MessagePage({name, _id, currentAccount}) {
         <div className="font-weight-bold side-name font-18 text-black prime text-one">{name}</div>
         </Link>
         <div className="messageTable p-2">
-          {messages.map(message =>    <> <div className="mt-1 mb-1">message.text</div></>)
+          {messages && messages.map(message =>    <> <div className="d-flex flex-column border message"><div className="font-weight-bold font-16">{message.sender.name}</div><div className="mt-1 mb-1 font-14">{message.text}</div></div></>)
        
 }
         </div>
