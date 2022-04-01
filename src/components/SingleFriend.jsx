@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 
 export default function SingleFriend() {
   return (
-    <div className="d-flex my-2">
+    <div className="d-flex my-2 friends">
       <img className="side-profile-img" src={""} alt={""} />
       <div className="d-flex flex-column">
         <div className="d-flex">

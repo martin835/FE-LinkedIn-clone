@@ -63,8 +63,9 @@ const MyNavbar = function ({ image, funcD, currentAccount }) {
                     ? "mr-4 font-12 text-black"
                     : "mr-4 font-12 text-muted"
                 }
-              >
+              ><div className="font-12">
                 <i className="bi bi-house-door-fill"></i>Home
+                </div>
               </Link>
               <Link
                 to="/network"
@@ -75,7 +76,7 @@ const MyNavbar = function ({ image, funcD, currentAccount }) {
                     : "mr-4 font-12 text-muted"
                 }
               >
-                <div className="mr-4 font-12">
+                <div className="font-12">
                   <i className="bi bi-people-fill"></i>NetWork
                 </div>
               </Link>

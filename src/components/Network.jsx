@@ -26,7 +26,7 @@ export default function Network() {
   return (
     <div className="container padding-sec">
       <Row className="m-auto">
-        <Col>
+        <Col md={4}>
           <SingleFriend />
         </Col>
       </Row>
