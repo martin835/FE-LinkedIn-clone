@@ -7,6 +7,8 @@ export default function MessagePage({name, _id, currentAccount}) {
 
   const [messages, setMessages] = useState(null)
 
+  const [text, setText] = useState(undefined)
+
   const apiMessage = (id, type, secondId) => `${process.env.REACT_APP_LOCAL}/message/${id}/${type}/${secondId}`;
 
   const manageMessages = async (id, type, secondId, method) => {
@@ -14,6 +16,26 @@ export default function MessagePage({name, _id, currentAccount}) {
       const response = await fetch(apiMessage(id, type, secondId),{method: method} );
       const data = await response.json();
       setMessages(data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const sendMessage = async (event) => {
+    event.preventDefault();
+
+    try {
+      await fetch(
+        apiMessage(currentAccount, "send",_id ),
+        {
+          method: "POST",
+          body: JSON.stringify(text),
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      manageMessages(currentAccount, "and", _id, "GET")
     } catch (error) {
       console.log(error);
     }
@@ -36,10 +58,11 @@ export default function MessagePage({name, _id, currentAccount}) {
        
 }
         </div>
-        <input type="text" />
+        <input type="text" onChange={(e)=> setText(e.target.value)}/>
         <Button
        className="mt-1 generic-btn side-btn font-weight-bold font-16 "
        variant="outline-primary"
+       onClick={(e) => sendMessage(e)}
      >
        Send <i className="bi bi-send-fill"></i>
      </Button>
