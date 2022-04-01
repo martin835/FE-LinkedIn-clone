@@ -9,6 +9,9 @@ import { useState, useEffect } from "react";
 export default function SingleFriend({image, name, surname, title, _id, currentAccount,manage}) {
 
   const [friends, setFriends] = useState(null);
+  const [dots, setDots] = useState(false);
+
+  
   const apiL = `${process.env.REACT_APP_LOCAL}/profile/${currentAccount}`;
 
   const fetchData = async () => {
@@ -68,9 +71,12 @@ export default function SingleFriend({image, name, surname, title, _id, currentA
        className="mt-1 generic-btn side-btn font-weight-bold font-12 "
        variant="outline-primary"
      >
-       Friends
+       Message <i class="bi bi-send-fill"></i>
      </Button>: <></> )}
       </div>
+      <div onClick={()=>setDots(!dots)}><i
+            className="bi bi-three-dots d-block pointer"
+          ></i><i className={dots === true ? "bi bi-person-x btn-outline-danger": "d-none"} onClick={()=>{manage(_id, "refuse", currentAccount, "DELETE", fetchData)}}></i></div>
     </div>: <div className="d-flex my-2 friends">
       <img className="side-profile-img" src={image} alt={""} />
       <div className="d-flex flex-column">
@@ -88,7 +94,7 @@ export default function SingleFriend({image, name, surname, title, _id, currentA
        variant="outline-info"
        onClick={()=>{manage(currentAccount, "request", _id, "POST", fetchData)}}
      >
-       Add
+       Connect
      </Button> </div> </div> }</>
   );
 }
