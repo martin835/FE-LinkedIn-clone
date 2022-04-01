@@ -339,11 +339,18 @@ footer .bi-linkedin {
   z-index: 1000;
 }
 
-@media (max-width: 400px) {
+@media (max-width:400px){
   .search-small {
-    max-width: 120px;
-  }
+    max-width:120px;
+  };
+ 
 }
+
+.friends{
+  background-color: white;
+  padding: 10px;
+}
+
 
 /* Martin - comments styles */
 

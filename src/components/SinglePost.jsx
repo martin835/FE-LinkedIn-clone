@@ -41,6 +41,7 @@ const SinglePost = (props) => {
         method: "DELETE",
       });
       if (response.ok) {
+        props.fetch()
         console.log("Ok");
       }
     } catch (error) {
