@@ -55,7 +55,7 @@ export default function Messages({currentAccount}) {
         {friends && friends.filter(user => user._id !== currentAccount).map( user =>
         <Col md={4} key={user._id}>
           <SingleMessage name={user.name} surname={user.surname} _id={user._id} image={user.image} title={user.title} currentAccount={currentAccount} setHide={setHide} hide={hide} setName={setName} setMId={setMId}/>
-        </Col>)}</> : <MessagePage name={name} _id={mId}/>}
+        </Col>)}</> : <MessagePage name={name} _id={mId} currentAccount={currentAccount}/>}
       </Row>
     </div>
   );

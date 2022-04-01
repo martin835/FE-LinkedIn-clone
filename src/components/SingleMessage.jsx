@@ -51,7 +51,7 @@ export default function SingleMessage({image, name, surname, title, _id, current
        variant="outline-primary"
        onClick={()=> {setHide(!hide); setName(name + " " + surname); setMId(_id)}}
      >
-       Message <i class="bi bi-send-fill"></i>
+       Message <i className="bi bi-send-fill"></i>
      </Button>
       </div>
     </div>
