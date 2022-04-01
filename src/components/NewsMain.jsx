@@ -22,7 +22,6 @@ const NewsMain = ({ changeImg, currentAccount }) => {
       let response = await fetch(apiL2);
       let data = await response.json();
       change(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
