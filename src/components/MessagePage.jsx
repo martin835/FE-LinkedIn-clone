@@ -58,7 +58,7 @@ export default function MessagePage({name, _id, currentAccount}) {
        
 }
         </div>
-        <input type="text" onChange={(e)=> {setText({text: e.target.value}); console.log(text)}}/>
+        <input type="text" placeholder="write something..." onChange={(e)=> {setText({text: e.target.value}); console.log(text)}}/>
         <Button
        className="mt-1 generic-btn side-btn font-weight-bold font-16 "
        variant="outline-primary"
