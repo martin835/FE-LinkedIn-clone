@@ -30,6 +30,7 @@ export default function Messages({currentAccount}) {
     } catch (error) {
       console.log(error);
     }
+
   };
 
   const manageFriendship = async (id, type, secondId, method,updateSingleCard) => {
@@ -40,6 +41,7 @@ export default function Messages({currentAccount}) {
       fetchData()
     } catch (error) {
       console.log(error);
+      
     }
   };
 
