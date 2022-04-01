@@ -53,11 +53,11 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-.container-nav{
+.container-nav {
   z-index: 1500;
 }
 
-.navbar{
+.navbar {
   z-index: 1500;
 }
 /* ---navbar Start */
@@ -101,7 +101,7 @@ h6 {
   padding: 0 !important;
 }
 
-.navbar-toggler{
+.navbar-toggler {
   z-index: 2000;
 }
 
@@ -327,16 +327,15 @@ footer .bi-linkedin {
   z-index: 1 !important;
 }
 
-
-.prime:hover{
-  color: var(--link-blue)!important;
+.prime:hover {
+  color: var(--link-blue) !important;
 }
 
-#basic-navbar-nav{
+#basic-navbar-nav {
   background-color: var(--white-bg);
-  position:absolute;
+  position: absolute;
   right: 20px;
-  top:0;
+  top: 0;
   z-index: 1000;
 }
 
@@ -351,3 +350,26 @@ footer .bi-linkedin {
   background-color: white;
   padding: 10px;
 }
+
+
+/* Martin - comments styles */
+
+.comment-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 65px;
+  /* border: 1px solid red; */
+}
+
+.comment-image > img {
+  width: 35px;
+  height: 35x;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comments-box {
+  background-color: var(--highlight-gray) !important;
+}
+/* Martin - comments styles END */

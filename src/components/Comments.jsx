@@ -5,8 +5,12 @@ import {
   ListGroupItem,
   Form,
   Spinner,
+  Row,
+  Col,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import useDidUpdateEffect from "../hooks/useDidUpdateEffect";
+import { format } from "date-fns";
 
 const Comments = (props) => {
   /* state = {
@@ -29,14 +33,21 @@ const Comments = (props) => {
     profile: "",
   });
   const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    loadComments();
+
+  useDidUpdateEffect(() => {
+    if (props.showComments) {
+      loadComments();
+    }
   }, [props.showComments]);
 
+  /*   useEffect(() => {
+    loadComments();
+  }, [props.showComments]);
+ */
   const url = `${process.env.REACT_APP_LOCAL}/posts`;
 
   const loadComments = async () => {
-    console.log("i am mounted");
+    console.log("Console log - Loading comment");
     let postId = props.postId; //NEED postId HERE
 
     try {
@@ -138,18 +149,60 @@ const Comments = (props) => {
         <i className="bi bi-list mr-2"></i>Show comments
       </Button> */}
       {props.showComments && (
-        <ListGroup>
+        <ListGroup className="mt-3 comments-box" variant="flush">
           {isLoading && <Spinner animation="border" variant="primary" />}
           {bookComments == 0 ? (
-            <ListGroup.Item>No Comments for this post :( </ListGroup.Item>
+            <ListGroup.Item variant="flush">
+              No Comments for this post :({" "}
+            </ListGroup.Item>
           ) : (
             bookComments.map((comment) => (
-              <ListGroup.Item key={comment._id}>
-                <i>"{comment.comment}"</i>
-                <Button variant="link" id={comment._id} onClick={deleteComment}>
-                  <i className="bi bi-trash3"></i>Delete
-                </Button>
-                <div>Author: {comment.profile.name} </div>
+              <ListGroup.Item key={comment._id} variant="flush">
+                <Row>
+                  <Col xs={2}>
+                    <div className="comment-image">
+                      <img src={comment.profile.image} />
+                    </div>
+                  </Col>{" "}
+                  <Col xs={10}>
+                    {" "}
+                    <div className="mb-2">
+                      <strong>
+                        {comment.profile.name} {comment.profile.surname}{" "}
+                      </strong>
+                      <Button
+                        variant="link"
+                        id={comment._id}
+                        onClick={deleteComment}
+                        className="float-right mt-n2"
+                      >
+                        <i className="bi bi-trash3"></i>
+                      </Button>
+                      <span className="float-right">
+                        <i>
+                          {" "}
+                          {format(
+                            new Date(Date.parse(comment.commentDate)),
+                            "ccc MMM do"
+                          )}{" "}
+                          {", "}{" "}
+                          {format(
+                            new Date(Date.parse(comment.commentDate)),
+                            "H"
+                          )}
+                          {":"}
+                          {format(
+                            new Date(Date.parse(comment.commentDate)),
+                            "mm"
+                          )}
+                        </i>{" "}
+                      </span>
+                    </div>
+                    <div>
+                      <i>"{comment.comment}"</i>
+                    </div>
+                  </Col>
+                </Row>
               </ListGroup.Item>
             ))
           )}
