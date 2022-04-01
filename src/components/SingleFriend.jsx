@@ -9,14 +9,15 @@ import { useState, useEffect } from "react";
 export default function SingleFriend({image, name, surname, title, _id, currentAccount,manage}) {
 
   const [friends, setFriends] = useState(null);
-  const [update, setUpdate] = useState(false);
   const apiL = `${process.env.REACT_APP_LOCAL}/profile/${currentAccount}`;
 
   const fetchData = async () => {
     try {
+       
       const response = await fetch(apiL);
       const data = await response.json();
       setFriends(data.friends);
+      
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +26,7 @@ export default function SingleFriend({image, name, surname, title, _id, currentA
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [update]);
+  }, []);
   
   return (<>
    {friends && friends.some(friend => (_id === friend.requester._id || _id === friend.recipient._id) )?
@@ -47,13 +48,13 @@ export default function SingleFriend({image, name, surname, title, _id, currentA
         <Button
         className={friends.some(friend => (_id === friend.requester._id || _id === friend.recipient._id) && friend.status === "Friends") ? "d-none": "mt-1 generic-btn side-btn font-weight-bold font-12"}
         variant="outline-success"
-        onClick={()=>{manage(_id, "accept", currentAccount, "PUT"); setUpdate(!update)}}
+        onClick={()=>{manage(_id, "accept", currentAccount, "PUT",fetchData)}}
       > Accept
         
       </Button> <Button
         className={friends.some(friend => (_id === friend.requester._id || _id === friend.recipient._id) && friend.status === "Friends") ? "d-none": "mt-1 generic-btn side-btn font-weight-bold font-12"}
         variant="outline-danger"
-        onClick={()=>{manage(_id, "refuse", currentAccount, "DELETE"); setUpdate(!update)}}
+        onClick={()=>{manage(_id, "refuse", currentAccount, "DELETE", fetchData)}}
       >
         Refuse
       </Button> </div>:  <Button
@@ -85,7 +86,7 @@ export default function SingleFriend({image, name, surname, title, _id, currentA
         </div> <Button
        className="mt-1 generic-btn side-btn font-weight-bold font-12 "
        variant="outline-info"
-       onClick={()=>{manage(currentAccount, "request", _id, "POST"); setUpdate(!update)}}
+       onClick={()=>{manage(currentAccount, "request", _id, "POST", fetchData)}}
      >
        Add
      </Button> </div> </div> }</>

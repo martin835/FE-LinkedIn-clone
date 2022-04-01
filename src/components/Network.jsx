@@ -25,10 +25,12 @@ export default function Network({currentAccount}) {
     }
   };
 
-  const manageFriendship = async (id, type, secondId, method) => {
+  const manageFriendship = async (id, type, secondId, method,updateSingleCard) => {
     try {
       const response = await fetch(apiFriend(id, type, secondId),{method: method} );
       const data = await response.json();
+      updateSingleCard && updateSingleCard()
+      fetchData()
     } catch (error) {
       console.log(error);
     }
