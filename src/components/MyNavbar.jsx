@@ -90,6 +90,7 @@ const MyNavbar = function ({ image, funcD, currentAccount }) {
                   location.pathname === "/messages"
                     ? "mr-4 font-12 text-black"
                     : "mr-4 font-12 text-muted"
+                    
                 }
               >
               <div className="font-12">
