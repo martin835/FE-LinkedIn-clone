@@ -6,18 +6,34 @@ import SingleFriend from "./SingleFriend";
 
 export default function Network({currentAccount}) {
   const [friends, setFriends] = useState(null);
+
+
+
   const apiL = `${process.env.REACT_APP_LOCAL}/profile`;
+
+  const apiFriend = (id, type, secondId) => `${process.env.REACT_APP_LOCAL}/friend/${id}/${type}/${secondId}`;
+
+
 
   const fetchData = async () => {
     try {
       const response = await fetch(apiL);
       const data = await response.json();
-      console.log(data);
       setFriends(data);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const manageFriendship = async (id, type, secondId, method) => {
+    try {
+      const response = await fetch(apiFriend(id, type, secondId),{method: method} );
+      const data = await response.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   useEffect(() => {
     fetchData();
@@ -29,7 +45,7 @@ export default function Network({currentAccount}) {
       <Row className="m-auto">
         {friends && friends.filter(user => user._id !== currentAccount).map( user =>
         <Col md={4} key={user._id}>
-          <SingleFriend name={user.name} surname={user.surname} _id={user._id} image={user.image} title={user.title}/>
+          <SingleFriend name={user.name} surname={user.surname} _id={user._id} image={user.image} title={user.title} currentAccount={currentAccount} manage={manageFriendship}/>
         </Col>)}
       </Row>
     </div>
