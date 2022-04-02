@@ -64,6 +64,7 @@ export default function SingleFriend({image, name, surname, title, _id, currentA
           className={friends.some(friend => (_id === friend.requester._id || _id === friend.recipient._id) && friend.status === "Friends") ? "d-none": "mt-1 generic-btn side-btn font-weight-bold font-12"}
           variant="outline-secondary"
         >
+          
           Pending
         </Button> ) }
         {friends && (friends.some(friend => (_id === friend.requester._id || _id === friend.recipient._id) && friend.status === "Friends") ?
