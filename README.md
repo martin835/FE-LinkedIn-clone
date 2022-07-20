@@ -5,7 +5,7 @@ This application is a team work of developers from Epicode school. It is realist
 
 ## Used tech
 
--Front-end: 
+- Front-end: 
   -- React & Bootstrap
 -Back-end:
   -- NodeJS & Mongo
