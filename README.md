@@ -7,7 +7,7 @@ This application is a team work of developers from Epicode school. It is realist
 
 - Front-end: 
   -- React & Bootstrap
--Back-end:
+- Back-end:
   -- NodeJS & Mongo
   -- Cloudinary
 - Back-end repo can be found here: https://github.com/martin835/BE-LinkedIn-clone
