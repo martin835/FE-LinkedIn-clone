@@ -21,3 +21,6 @@ This application is a team work of developers from Epicode school. It is realist
 
 ![image](https://user-images.githubusercontent.com/64438132/179944673-314b8e93-e59e-42a1-afe9-c1a07ebc3abb.png)
 
+![image](https://user-images.githubusercontent.com/64438132/179945298-93dfd151-19ed-45d6-aa12-b08571b35bde.png)
+
+
