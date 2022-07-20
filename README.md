@@ -18,3 +18,6 @@ This application is a team work of developers from Epicode school. It is realist
 
 
 ![image](https://user-images.githubusercontent.com/64438132/179943410-6983d65b-d101-48fb-b4e4-ecece0c54c94.png)
+
+![image](https://user-images.githubusercontent.com/64438132/179944673-314b8e93-e59e-42a1-afe9-c1a07ebc3abb.png)
+
